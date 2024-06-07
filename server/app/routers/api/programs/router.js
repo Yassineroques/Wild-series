@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 0 */  // --> OFF
+
 const express = require("express");
  
 const router = express.Router();

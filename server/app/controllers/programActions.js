@@ -1,3 +1,5 @@
+/* eslint no-use-before-define: 0 */  // --> OFF
+
 const programs = [
     {
       id: 1,
@@ -23,9 +25,25 @@ const programs = [
   
   // Declare the action
   
-  const browse = (req, res) => {
+  // Some data to make the trick
+
+// Declare the action
+
+const browse = (req, res) => {
+  if (req.query.q != null) {
+    const filteredPrograms = programs.filter((program) =>
+      program.synopsis.includes(req.query.q)
+    );
+
+    res.json(filteredPrograms);
+  } else {
     res.json(programs);
-  };
+  }
+};
+
+// Export it to import it somewhere else
+
+module.exports = { browse };
   
   // Export it to import it somewhere else
   
