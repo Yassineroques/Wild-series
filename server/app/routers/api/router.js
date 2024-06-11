@@ -1,23 +1,20 @@
-/* eslint no-use-before-define: 0 */  // --> OFF
-
 const express = require("express");
-
-const programRouter = require("./programs/router");
-
 
 const router = express.Router();
 
-router.use('/programs', programRouter);
+const sayWelcome = (req, res) => {
+  res.send("Welcome to Wild Series !");
+};
 
-
-
-const { sayWelcome } = require("../../controllers/SayWelcome")
-  
-  router.get("/", sayWelcome);
+router.get("/", sayWelcome);
 
 /* ************************************************************************* */
 // Import And Use Routers Here
 /* ************************************************************************* */
+
+const programsRouter = require("./programs/router");
+
+router.use("/programs", programsRouter);
 
 const itemsRouter = require("./items/router");
 
